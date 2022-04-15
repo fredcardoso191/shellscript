@@ -1,19 +1,25 @@
 #!/bin/bash
 
-S=S;
-s=s;
+Y=y;
+y=y;
 
 cd Workspace/node;
-echo "Digite o nome do diretório: ";
-read diretorio;
-mkdir $diretorio;
-cd $diretorio;
+
+echo "Enter the name project: ";
+read project;
+
+mkdir $project;
+cd $project;
+
 npm init;
-echo "Deseja instalar o express, bcrypt e body-parser? (S/N) ";
-read decisao;
-if [ $decisao = $S ] || [  $decisao = $s ]
+
+echo "Install express, bcrypt and body-parser? (Y/N) ";
+read decision;
+
+if [ $decision = $Y ] || [  $decision = $y ]
 then
-	echo "Instalando pacotes...";
+	echo "Installing packages...";
 	npm install express bcrypt body-parser --save;
 fi
+
 code .;
