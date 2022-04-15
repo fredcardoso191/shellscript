@@ -1,8 +1,5 @@
 #!/bin/bash
 
-Y=Y;
-y=y;
-
 cd Workspace/cpp;
 
 echo "Enter the project name: ";
@@ -14,7 +11,7 @@ cd $project
 echo "Create first file? (Y/N) ";
 read decision;
 
-if [ $decision == $Y ] || [ $decision == $y ]
+if [ $decision == Y ] || [ $decision == y ]
 then
 	echo "Enter the file name: ";
 	read file;
