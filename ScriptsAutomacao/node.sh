@@ -1,5 +1,15 @@
 #!/bin/bash
 
+express() {
+	npm install express --save;
+}
+bcrypt() {
+	npm install bcrypt --save;
+}
+body_parser(){
+	npm install body-parser --save;
+}
+
 cd Workspace/node;
 
 echo "Enter the name project: ";
@@ -10,13 +20,29 @@ cd $project;
 
 npm init;
 
-echo "Install express, bcrypt and body-parser? (Y/N) ";
-read decision;
+echo "Install express? (Y/N) ";
+read d_express;
 
-if [ $decision = Y ] || [  $decision = y ]
+echo "Install bcrypt? (Y/N) ";
+read d_bcrypt;
+
+echo "Install body-parser? (Y/N) ";
+read d_body;
+
+echo "Installing packages...";
+
+if [ $d_express == Y ] || [ $d_express == y ]
 then
-	echo "Installing packages...";
-	npm install express bcrypt body-parser --save;
+	express;
+fi
+
+if [ $d_bcrypt == Y ] || [ $d_bcrypt == y ]
+then
+	bcrypt;
+fi
+if [ $d_body == Y ] || [ $d_body == y ]
+then
+	body_parser;
 fi
 
 code .;
