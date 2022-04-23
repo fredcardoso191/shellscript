@@ -7,7 +7,7 @@ echo -e "\033[01;34mFOR UNIX SYSTEMS\033[01;37m!"
 
 #rpath = repository path;
 #repos = repository (conditional variable);
-#main = main function;
+#main = function;
 
 main() {
 	echo "/*Author: $USER*/
