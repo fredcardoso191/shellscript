@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #FOR UNIX SYSTEMS
-echo -e "\033[01;34mFOR UNIX SYSTEMS\033[01;37m"
+echo -e "\033[01;34mFOR UNIX SYSTEMS!\033[01;37m";
 
-#Requirements: Visual Stuido Code and chmod+x
+#Requirements: Visual Studio Code and chmod+x
 
 #rpath = repository path;
 #repos = repository (conditional variable);
