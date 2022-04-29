@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #FOR UNIX SYSTEMS
-echo -e "\033[01;34mFOR UNIX SYSTEMS\033[01;37m!"
+echo -e "\033[01;34mFOR UNIX SYSTEMS\033[01;37m"
 
 #Requirements: Visual Stuido Code and chmod+x
 
@@ -18,71 +18,101 @@ int main() {
 }" > $file.cpp;
 }
 
-echo "Specify full repository path? (Y/N): ";
-read repos;
+while [ "$repos" != Y ] || [ "$repos" != y ]
+do
+	echo -e -n "\e\033[01;36mSpecify full repository path? (Y/N): \033[01;37m";
+	read repos;
 
-if [ $repos == Y ] || [ $repos == y ]
-then
-	echo "Specify (/home/user/...): ";
-	read rpath;
-	cd $rpath;
-else
-	cd /home/$USER/;
-fi
+	if [ $repos == Y ] || [ $repos == y ]
+	then
+		echo -e -n "\033[01;36mSpecify (/home/user/...): \033[01;37m"
+		read rpath;
+		cd $rpath;
+		break;
+	fi
 
-if [ -z "$repos" ]
-then
-	echo "Please enter a valid value!";
-	exit 0;
-fi
+	if [ $repos == N ] || [ $repos == n ]
+	then
+		cd /home/$USER/;
+		break;
+	fi
 
-echo "Enter the project name: ";
-read project;
+	if [ -z "$repos" ]
+	then
+		echo -e "\033[01;36mPlease enter a valid value!\033[01;37m"
+	fi
+done
 
-if [ -z "$project" ]
-then
-	echo "Please enter a valid value!"
-	exit 0;
-fi
+while [ "$project" == "" ] || [ "$project" == " " ]
+do
+	echo -e -n "\033[01;36mEnter the project name: \033[01;37m"
+	read project;
+
+	if [ -z "$project" ]
+	then
+		echo -e "\033[01;36mPlease enter a valid value!\033[01;37m"
+	fi
+done
 
 mkdir $project;
 cd $project;
 
-echo "Create first file? (Y/N): ";
-read first_file;
+while [ "$first_file" != Y ] || [ "$first_file" != y ]
+do
+	echo -e -n "\033[01;36mCreate first file? (Y/N): \033[01;37m"
+	read first_file;
+	if [ $first_file == Y ] || [ $first_file == y ]
+	then
+		break;
+	fi
+
+	if [ "$first_file" == N ] || [ "$first_file" == n ] 
+	then
+		code .;
+		break;
+	fi
+
+	if [ -z "$first_file" ] || [ $first_file != Y ] || [ $first_file != y ]
+	then
+		echo -e "\033[01;36mPlease enter a valid value!\033[01;37m"
+	fi
+done
 
 if [ $first_file == Y ] || [ $first_file == y ]
 then
-	echo "Enter the file name: ";
-	read file;
+	while [ "$file" == "" ] || [ "$file" == " " ]
+	do
+		echo -e -n "\033[01;36mEnter the file name: \033[01;37m"
+		read file;
+	done
 
 	if [ -z "$file" ]
 	then
-		echo "Please enter a valid value!";
-		exit 0;
+		echo -e "\033[01;36mPlease enter a valid value!\033[01;37m"
 	fi
 
-	echo "Create default project? (Y/N): ";
-	read default;
+	while [ "$default" != Y ] || [ "$default" != y ]
+	do
+		echo -e -n "\033[01;36mCreate default project? (Y/N): \033[01;37m"
+		read default;
 
-	if [ $default == Y ] || [ $default == y ]
-	then
-		main;
-	else
-		echo > $file.cpp;
-	fi
+		if [ $default == Y ] || [ $default == y ]
+		then
+			main;
+			code .;
+			break;
+		fi
 
-	if [ -z "$default" ]
-	then
-		echo "Please enter a valid value!";
-		exit 0;
-	fi
+		if [ $default == N ] || [ $default == n ] 
+		then
+			echo > $file.cpp;
+			code .;
+			break;
+		fi
+
+		if [ -z "$default" ]
+		then
+			echo -e "\033[01;36mPlease enter a valid value!\033[01;37m"
+		fi
+	done
 fi
-
-if [ -z "$first_file" ]
-then
-	echo "Please enter a valid value!";
-	exit 0;
-fi
-
-code .;
