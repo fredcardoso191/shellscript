@@ -9,13 +9,13 @@ echo -e "\033[01;34mFOR UNIX SYSTEMS!\033[01;37m";
 #repos = repository (conditional variable);
 
 main() {
-	echo "/*Author: $USER*/
+	echo '/*Author: $USER*/
 #include <iostream>
 
 int main() {
-	
+	std::cout << "Hello World!" << std::endl;
 	return 0;
-}" > $file.cpp;
+}' > $file.cpp;
 }
 
 while [ "$repos" != Y ] || [ "$repos" != y ]
